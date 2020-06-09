@@ -1,30 +1,41 @@
 package com.crud.usuarios.api.service;
 
+import com.crud.usuarios.api.entity.Usuario;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioServiceImplMiguel implements UsuarioServiceMiguel{
-    ArrayList lista = new ArrayList();
+
+    List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
     @Override
-    public void setUsuario(String au) {
-        lista.add(au);
-        System.out.println("Tamaño de ArrayList después de agregar elementos:"+ lista.size());
+    public void setUsuario(Usuario usuario) {
+    this.listaUsuarios.add(usuario);
     }
 
     @Override
-    public void removerUsuario(int numero) {
-        lista.remove(numero);
-        System.out.println("Lista de todos los elementos:" + lista);
+    public void removerUsuario(Usuario usuario) {
+        this.listaUsuarios.remove(((int) usuario.id)-1);
+
     }
 
     @Override
-    public void getUsuarios() {
-        System.out.println("Lista de todos los usuarios:" + lista);
+    public List<Usuario> getUsuarios() {
+
+        return this.listaUsuarios;
     }
 
     @Override
-    public void actualizaPosicion(int n, String s) {
-        lista.remove(n);
-        lista.add(n, s);
+    public void actualizaPosicion(int position, Usuario usuario) {
+        this.listaUsuarios.add(position,usuario);
+
+    }
+
+    @Override
+    public void imprimeUsuarios(List<Usuario> lista) {
+
+        for (Usuario usuario: lista)
+            System.out.println(usuario);
     }
 }
